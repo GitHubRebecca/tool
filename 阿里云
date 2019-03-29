@@ -53,7 +53,10 @@
   sudo apt install npm
   
   使用node -v npm -v查看版本
-    
+  
+  如果版本过低全局安装n，然后使用n来更新node
+  sudo npm install n -g
+  sudo n stable
     
     
     
