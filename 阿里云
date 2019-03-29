@@ -58,6 +58,14 @@
   sudo npm install n -g
   sudo n stable
     
+4. ubuntu安装ngnix
+  sudo apt-get install nginx
+  命令
+    ngnix -s stop
+    ngnix -s reopen
+    ngnix -s reload
+    ngnix -t 配置文件是否正确
+    
     
     
     
