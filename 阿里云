@@ -1,3 +1,59 @@
 1. 购买了服务器需要开通访问的权限，不然外面是访问不了主机的。
   https://help.aliyun.com/document_detail/25471.html?spm=a2c4e.11153987.0.0.4acf3927PZJeuk
   
+2.ubuntu安装mongodb
+  #setp 1. Import the public key used by the package management system.
+  sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+  
+  #step 2. Create a list file for MongoDB
+  echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+  
+  #step 3. Reload local package database
+  sudo apt-get update
+ 
+  #step 4. Install the latest stable version of MongoDB
+  sudo apt-get install -y mongodb-org
+  
+  安装完成后可开启服务
+    sudo service mongod stop　　#停止服务
+    sudo service mongod start　　#启动服务
+    sudo service mongod restart #重新启动服务
+    sudo service mongod status #查看状态
+   
+  设置mongodb为开机自己启动
+    sudo systemctl enable mongod
+    
+  连接mongodb
+    mongo
+  
+  mongodb配置文件
+    less /etc/mongod.conf
+  
+  mongo安装完成后，默认是只能在本机连接，在服务器外部是不能连接mongo的
+    #切换至root用户
+      sudo -i
+    #修改mongo配置文件
+      vim /etc/mongod.conf
+    #把net下的127.0.0.1改为0.0.0.0
+    #重启服务
+      sudo service mongod restart
+    
+  如果有需要删除文件
+    #停止mongodb服务
+      sudo service mongod stop
+    #删除包
+      sudo apt-get purge mongodb-org*
+    #删除数据文件及日志文件
+      sudo rm -r /var/log/mongodb
+      sudo rm -r /var/lib/mongodb
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
