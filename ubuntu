@@ -69,7 +69,22 @@
   出现错误nginx: [error] open() "/run/nginx.pid" failed (2: No such file or directory)使用如下命令
     sudo nginx -c /etc/nginx/nginx.conf
     
-    
+  这种版本的nginx配置文件除了nginx.conf还有sites-enable文件夹里的default文件，默认的配置都在里面。
+  
+  跨域加上如下配置，就是前端请求路径中有/api会替换成http:localhost:5000/api
+    location /api {
+      proxy_pass http:localhost:5000/api;
+    }
+  
+  刷新会出现404问题
+    这是因为我们只配置了/,所以我们需要在location中加上 try_files $uri $uri/ /index.html;就是匹配不到的时候就去index.html.
+    https://router.vuejs.org/zh/guide/essentials/history-mode.html
+  
+  
+  
+  
+  
+  
     
     
     
