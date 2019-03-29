@@ -47,8 +47,12 @@
       sudo rm -r /var/log/mongodb
       sudo rm -r /var/lib/mongodb
     
-    
-    
+3. ubuntu安装nodejs和npm
+  sudo apt-get install nodejs
+  sudo apt install nodejs-legacy
+  sudo apt install npm
+  
+  使用node -v npm -v查看版本
     
     
     
