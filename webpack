@@ -1,0 +1,4 @@
+1.插件
+  extract-text-webpack-plugin 它的作用是打包后将生成css文件通过link的方式引入到html中，如果不使用这个插件，那么css就打包到<head>的style中。
+  optimize-css-assets-webpack-plugin 压缩css
+  uglifyjs-webpack-plugin 压缩js
