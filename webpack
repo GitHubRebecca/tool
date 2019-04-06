@@ -3,7 +3,7 @@
 
 2. 入口 entry
   入口起点(entry point)指示 webpack 应该使用哪个模块，来作为构建其内部依赖图的开始
-  可以通过在 webpack 配置中配置 entry 属性，来指定一个入口起点（或多个入口起点）。默认值为 ./src。
+  可以通过在 webpack 配置中配置 entry 属性，来指定一个入口起点（或多个入口起点）。默认值为 ./src。多个入口的时候使用数组。
   module.exports = {
     entry: {
       main: './path/to/my/entry/file.js'
@@ -18,8 +18,8 @@
   module.exports = {
     entry: './path/to/my/entry/file.js',
     output: {
-      path: path.resolve(__dirname, 'dist'),
-      filename: 'my-first-webpack.bundle.js'
+      path: path.resolve(__dirname, '../dist'),
+      filename: 'my-first-webpack.bundle.js' //可以使用"[name]-bundle.js"这样能得到源文件名字+bundle.js的名称。
     }
 
     //如果配置创建了多个单独的入口，则应该使用占位符来确保每个文件具有唯一的名称
@@ -29,17 +29,20 @@
     },
     output: {
       filename: '[name].js',
-      path: __dirname + '/dist'
+      path: __dirname + '/dist',
+      //还可以设置publicPath:/ 这样在引入打包文件的时候需要加上前缀/
     }
   };
 
 4. 模式 mode
-  通过选择 development 或 production 之中的一个，来设置 mode 参数，进行对 webpack 内置的优化
+  通过选择 development 或 production 之中的一个，来设置 mode 参数，进行对 webpack 内置的优化。
+  当设置为development会将 process.env.NODE_ENV 的值设为 development，production同理。
   module.exports = {
     mode: 'production'
   };
 
 5. 加载器 loader
+  webpack只认识js，如果需要打包其他文件就需要用到loader
   loader 可以将所有类型的文件转换为 webpack 能够处理的有效模块，然后你就可以利用 webpack 的打包能力，对它们进行处理。
   使用前需要下载好对应的loader，然后进行相关的配置
   在更高层面，在 webpack 的配置中 loader 有两个目标：
@@ -47,12 +50,64 @@
     use 属性，表示进行转换时，应该使用哪个 loader。
 
   const config = {
-    output: {
-      filename: 'my-first-webpack.bundle.js'
-    },
     module: {
       rules: [
-        { test: /\.txt$/, use: 'raw-loader' }
+        //es6转es5需要安装babel-loader babel-core还需要创建.babelrc文件并配置,babelrc文件中的配置还需要下载其他的依赖，比如babel-preset-env babel-preset-stage-2等
+        //.babelrc里面有presets和plugins配置，presets是plugins的集合。plugins是从前往后一次执行，但presets是从后往前依次执行。
+        {
+            test: /\.js/,
+            use: [
+              {
+                loader: 'babel-loader'
+              }
+            ],
+            exclude: /node_modules/ //不处理node_modules下面的js
+        }
+        //打包txt文件需要用到raw-loader
+        { test: /\.txt$/, use: 'raw-loader' },
+        //打包css需要用到style-loader和css-loader 预处理语言需要额外的loader比如less-loader，配置在css-loader下面
+        {
+            test: /\.css$/,
+            use: [
+                {
+                    loader: 'style-loader'
+                },
+                {
+                    loader: 'css-loader'
+                }
+            ]
+        }
+        //打包html需要用到file-loader extract-loader html-loader
+        {
+            test: /\.html$/,
+            use: [
+              {
+                loader: 'file-loader',
+                options: {
+                  name: '[name].html' //新html文件名
+                }
+              },
+              {
+                loader: 'extract-loader'//使打包后的html跟js分离形成单独的文件。(需使用webpack打包才会有文件出现)
+              },
+              {
+                loader: 'html-loader',
+                attrs: ['img:src']
+              }
+            ]
+         }
+         //打包图片需要使用file-loader 还需要在html-loader里面配置attrs
+         {
+             test: /\.(jpg|png)$/,
+             use: [
+               {
+                 loader: 'file-loader',
+                 options: {
+                   name: 'imgs/[name]-bundle.[ext]'//会在dist文件夹下创建imgs存放图片
+                 }
+               }
+             ]
+         }
       ]
     }
   };
@@ -86,12 +141,14 @@
 
 7. 命名
   webpack.config.js 这个文件是webpack的配置文件，名字唯一。默认读取，名字要换需要指定 webpack --config=config/webpack.dev.js
+  如果config文件在根目录并且名称为webpack.config.js 我们可以直接使用webpack命令进行打包，否则需要通过webpack --config=来指定config文件目录来进行打包。
 
-8. 创建本地服务器
-  第一步： 安装 npm install -g webpack-dev-server     npm install --save-dev webpack-dev-server
-  第二步： 配置npm命令 "server": "webpack-dev-server --open" 使用npm run server来开启
+8. 创建本地服务器 webpack-dev-server
+  实现改变代码实时打包更新。以缓存的模式，不会真正的打包。真正的打包需要使用webpack。
+  第一步： 安装 npm install -g webpack-dev-server
+  第二步： 配置npm命令 "server": "webpack-dev-server --config=./config/webpack.config.js" 使用npm run server来开启
   devServer: {
-    contentBase: "./public",//本地服务器所加载的页面所在的目录
+    contentBase: "./dist",//本地服务器所加载的页面所在的目录
     historyApiFallback: true,//不跳转  它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
     port   设置默认监听端口，如果省略，默认为”8080“
     inline: true//实时刷新，
