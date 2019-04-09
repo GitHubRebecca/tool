@@ -1,4 +1,4 @@
-1. 购买了服务器需要开通访问的权限，不然外面是访问不了主机的。
+1. 购买了服务器需要开通访问的权限，不然外面是访问不了主机的。配置安全组
   https://help.aliyun.com/document_detail/25471.html?spm=a2c4e.11153987.0.0.4acf3927PZJeuk
   
 2.ubuntu安装mongodb
@@ -54,7 +54,7 @@
   
   使用node -v npm -v查看版本
   
-  如果版本过低全局安装n，然后使用n来更新node
+  如果版本过低全局安装n，然后使用n来更新node，n只能在linux上用，不支持windows。
   sudo npm install n -g
   sudo n stable
     
