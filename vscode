@@ -1,14 +1,25 @@
-1.open-in-browser
-  能把html文件在浏览器中打开
-2.Auto Close Tag
-  自动关闭标签
-3.Auto Complete
-  自动补全标签
-4.Auto Import
-  自动补全路径
-5.Auto Rename
-  自动重命名标签
-6.Chinese Language
-  中文包
-7.Vetur
-  vue的支持
+常用插件
+  1.open-in-browser
+    能把html文件在浏览器中打开
+  2.Auto Close Tag
+    自动关闭标签
+  3.Auto Complete
+    自动补全标签
+  4.Auto Import
+    自动补全路径
+  5.Auto Rename
+    自动重命名标签
+  6.Chinese Language
+    中文包
+  7.Vetur
+    vue的支持
+  8.gitlens
+    提示代码谁提交的
+  9.Vue 2 Snippets
+    vue高亮代码提示
+
+快捷键
+  alt + arrow 上下移动行
+  shift + alt + arrow 上下复制行
+  ctrl + d 选择下一个匹配项
+  ctrl + shift + l 选择所有匹配项
