@@ -4,3 +4,66 @@
   同时在密钥中有一个注释字段，用-C来指定所指定的注释，可以方便用户标识这个密钥，指出密钥的用途或其他有用的信息。所以在这里输入自己的邮箱或者其他都行。
   输入完毕后程序同时要求输入一个密语字符串(passphrase)，空表示没有密语。接着会让输入2次口令(password)，空表示没有口令。3次回车即可完成当前步骤，此时[c盘>用户>自己的用户名>.ssh]目录下已经生成好了。
   登录github。打开setting->SSH keys，点击右上角 New SSH key，把生成好的公钥id_rsa.pub放进 key输入框中，再为当前的key起一个title来区分每个key。
+
+2. 日志
+  git log 查看log。
+  git log -p 查看log和这次提交的改动。
+  git reflog  查看详细的log。
+
+3. 提交 拉取
+  git add .  -A   -u   从工作区到提交到暂存区 . 不包括删除 u不包括新增  A是全部。
+  git commit -m 'message'。
+  git push origin branchname。
+  git commit --amend  修改提交的message。如果已经上传到远程仓库，修改完后需要强制提交
+  git push origin 远程分支名 : 本地分支名 本地分支名可以省略。
+
+3. 比较
+  git diff [HEAD]   比较工作区和暂存区不同，比较工作区和版本库不同。
+
+4. 回退
+  撤销工作区   git checkout .撤销所有，或则 git checkout --filename 撤销某个文件的改动。
+  撤销暂存区   git reset HEAD .撤销所有， 或则git reset HEAD --filename 撤销某个文件的改动，改动返回工作区。
+  撤销版本库  git reset [--hard | --soft | --mixed]  id 删除提交改动放弃掉，改动回退到暂存区，改动回退到工作区(默认)。id为上一次的id
+
+5. 合并 rebase
+  rebase 解决完冲突后 add . 然后rebase --continue  然后 push  -f强制提交，任何时候可以使用git rebase --abort来放弃rebase。
+  交互式rebase -i 合并提交。删除某次提交只需要在里面删除那次提交的信息即可。
+
+6. 分支
+  git branch 查看分支。
+  git branch newbranchName    新建分支。
+  git branch -d/-D 删除分支。
+  git checkout branchName 切换到新分支。
+  git checkout -b newbranchName  新建分支并切换到该分支。
+  git branch -m oldbranchName newbranchName  修改分支名。
+
+7. 暂存
+  git stash   暂存改动。
+  git stash list  查看暂存。
+  git stash pop 提取暂存并清除这次暂存。
+  git stash apply stash@{n} 提取某次暂存，但是不清除这次暂存。
+  git stash clear 清除所有暂存。
+
+8.查看当前仓库地址
+  git remote -v
+
+9.查看git配置
+  git config  --list
+
+10.切换远程仓库
+  git remote remove origin
+  git remote add origin 远程仓库地址
+
+11.创建SSH Key
+  ssh-keygen -t rsa -C "your_email@example.com" // 此处email可任意，不一定要gitLab登录邮箱
+  然后会提示生成的.ssh/id_rsa.pub文件的位置，然后把id_rsa.pub文件里面的内容放到git的ssh里面就行了。
+
+12.删除
+  git  rm -f 文件名  删除暂存区工作区， git rm --cached 文件名  删除暂存区。
+
+
+
+
+
+
+
