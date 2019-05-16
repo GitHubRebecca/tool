@@ -65,6 +65,8 @@
   Vue Syntax Hightlight     vue高亮显示
   JSON key-value            json键值对显示
   typescript                识别typescript
+  Bracket Highlighter       高亮各种括号的起始和结尾
+  AutoFileName              路径提示
 
 5. Emmet插件的使用
   tab提示
