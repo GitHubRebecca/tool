@@ -17,6 +17,8 @@
     提示代码谁提交的
   9.Vue 2 Snippets
     vue高亮代码提示
+  10.ES7 React/Redux/React-Native/JS snippets
+    react代码提示
 
 快捷键
   alt + arrow 上下移动行
@@ -25,3 +27,6 @@
   ctrl + shift + l 选择所有匹配项
   ctrl + b 显示隐藏左边菜单栏
   f11 全屏显示
+
+设置
+  "emmet.includeLanguages": {"javascript": "javascriptreact"} 设置react按tab补全标签
