@@ -30,3 +30,4 @@
 
 设置
   "emmet.includeLanguages": {"javascript": "javascriptreact"} 设置react按tab补全标签
+  "editor.formatOnType": true, "editor.formatOnSave": true 设置代码自动格式化，变漂亮。
