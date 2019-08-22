@@ -85,3 +85,13 @@
     ^~ 表示如果该符号后面的字符是最佳匹配，采用该规则，不再进行后续的查找。
     ~ 表示该规则是使用正则定义的，区分大小写。
     ~* 表示该规则是使用正则定义的，不区分大小写。
+
+5. ubuntu安装图形化界面
+  sudo apt-get install ubuntu-desktop #安装桌面软件
+  reboot #重启
+  图形化界面和命令行界面的切换
+  ctrl + alt + F1到F6 图形界面到命令行界面
+  ctrl + alt + F7 命令行到图形化界面
+
+6. 安装git
+  sudo apt-get install git
