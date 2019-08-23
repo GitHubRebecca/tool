@@ -50,3 +50,4 @@
 6. 安装ruby
   rvm list known 查看已知的ruby版本
   rvm install 版本 安装指定版本的ruby
+  这种使用rvm在我的mac上安装不了 我使用的brew安装的ruby brew install ruby
