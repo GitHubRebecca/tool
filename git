@@ -18,7 +18,7 @@
   git push origin 远程分支名 : 本地分支名 本地分支名可以省略。
 
 3. 比较
-  git diff [HEAD]   比较工作区和暂存区不同，比较工作区和版本库不同。
+  git diff [HEAD]   比较工作区和暂存区不同，比较工作区(暂存区)和版本库不同。
 
 4. 回退
   撤销工作区   git checkout .撤销所有，或则 git checkout --filename 撤销某个文件的改动。
@@ -54,12 +54,8 @@
   git remote remove origin
   git remote add origin 远程仓库地址
 
-11.创建SSH Key
-  ssh-keygen -t rsa -C "your_email@example.com" // 此处email可任意，不一定要gitLab登录邮箱
-  然后会提示生成的.ssh/id_rsa.pub文件的位置，然后把id_rsa.pub文件里面的内容放到git的ssh里面就行了。
-
-12.删除
-  git  rm -f 文件名  删除暂存区工作区， git rm --cached 文件名  删除暂存区。
+11.删除
+  git rm -f 文件名 删除暂存区工作区， git rm --cached 文件名  删除暂存区。
 
 
 
