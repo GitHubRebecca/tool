@@ -50,4 +50,17 @@
 6. 安装ruby
   rvm list known 查看已知的ruby版本
   rvm install 版本 安装指定版本的ruby
-  这种使用rvm在我的mac上安装不了 我使用的brew安装的ruby brew install ruby
+
+7. 使用ruby
+  查看已经安装的ruby rvm list
+  使用指定版本的ruby rvm use ruby版本号
+  设置默认版本的ruby ruby use ruby版本号 --default
+  使用默认版本的ruby rvm use default
+
+8. gemsets
+  gemset 可以理解为是一个独立的虚拟 Gem 环境，每一个 gemset 都是相互独立的。gemset 是附加在特定的 ruby 版本上的
+  rvm gemset list 查看所有的gemset
+  rvm gemset create [gemset名（可以是多个）] 创建gemsets (创建新的gemset会把默认的gem包带过来)
+  切换到指定gemset有两种方法
+    rvm use ruby版本号@gemset名 例如rvm 2.6.3@rails5
+    rvm gemset use gemset名 例如 rvm gemset use @rails5
